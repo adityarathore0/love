@@ -12,16 +12,32 @@
     }
 
     body {
-      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
       font-family: 'Montserrat', sans-serif;
       overflow: hidden;
-      color: #fff;
+    }
+
+    /* Common Section Styling */
+    .section {
+      display: none;
+      height: 100vh;
+      width: 100%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      text-align: center;
+    }
+
+    .active {
       display: flex;
+      flex-direction: column;
       align-items: center;
       justify-content: center;
-      height: 100vh;
-      flex-direction: column;
-      text-align: center;
+    }
+
+    /* Section 1 - Love Note */
+    #section1 {
+      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+      color: #fff;
       padding: 20px;
     }
 
@@ -76,7 +92,6 @@
       }
     }
 
-    /* Floating hearts */
     .hearts {
       position: fixed;
       top: 0;
@@ -107,6 +122,64 @@
         opacity: 0;
       }
     }
+
+    /* Section 2 - Do You Love Me */
+    #section2 {
+      background: #fce4ec;
+      color: #4a148c;
+      flex-direction: column;
+    }
+
+    .doll {
+      width: 200px;
+      animation: float 3s ease-in-out infinite;
+      margin-top: 20px;
+    }
+
+    .btn-container {
+      margin-top: 30px;
+      position: relative;
+      height: 150px;
+    }
+
+    .btn {
+      padding: 15px 30px;
+      font-size: 1.2em;
+      border: none;
+      border-radius: 25px;
+      cursor: pointer;
+      margin: 20px;
+      transition: all 0.3s ease;
+    }
+
+    .yes {
+      background-color: #ff4081;
+      color: white;
+    }
+
+    .no {
+      background-color: #f8bbd0;
+      color: #880e4f;
+      position: absolute;
+    }
+
+    #message {
+      font-size: 1.4em;
+      margin-top: 30px;
+    }
+
+    /* Navigation Button */
+    .switch-btn {
+      margin-top: 30px;
+      padding: 10px 20px;
+      font-size: 1em;
+      background-color: #ff99cc;
+      border: none;
+      border-radius: 20px;
+      color: white;
+      cursor: pointer;
+      box-shadow: 0 0 10px rgba(255, 153, 204, 0.5);
+    }
   </style>
 </head>
 <body>
@@ -127,18 +200,60 @@
     Your browser does not support the audio element.
   </audio>
 
-  <!-- Main Love Message -->
-  <div class="love-note">
-    <h1>For My Love, Palak 💕</h1>
-    <p>Hey Palak, this page was made with pure love,</p>
-    <p>Because you’re the most beautiful part of my world. 🌎</p>
-    <div class="heart">❤️</div>
-    <p>I, <strong>Aditya Rathor</strong>, love you more with every heartbeat.</p>
-    <p>You’re not just my girlfriend… You’re my peace, my smile, my forever. 💍</p>
-    <footer>Made just for you, My Moonlight 🌙 - Love, Aditya</footer>
+  <!-- Section 1: Love Note -->
+  <div class="section active" id="section1">
+    <div class="love-note">
+      <h1>For My Love, Palak 💕</h1>
+      <p>Hey Palak, this page was made with pure love,</p>
+      <p>Because you’re the most beautiful part of my world. 🌎</p>
+      <div class="heart">❤️</div>
+      <p>I, <strong>Aditya Rathor</strong>, love you more with every heartbeat.</p>
+      <p>You’re not just my girlfriend… You’re my peace, my smile, my forever. 💍</p>
+      <footer>Made just for you, My Moonlight 🌙 - Love, Aditya</footer>
+    </div>
+    <button class="switch-btn" onclick="switchSection()">Next ➤</button>
   </div>
-  <button onclick="location.href='doll.html'">Rathore🖤</button>
-  
+
+  <!-- Section 2: Do You Love Me -->
+  <div class="section" id="section2">
+    <h1>Palak, Do You Love Me? 💖</h1>
+    <img class="doll" src="https://i.imgur.com/OC5gxWv.png" alt="Cute Doll">
+    <h1>Do You love Aditya ❤️</h1>
+
+    <div class="btn-container">
+      <button class="btn yes" onclick="showLove()">Yes 💘</button>
+      <button class="btn no" id="noBtn" onmouseover="moveButton()">No 🙈</button>
+    </div>
+
+    <div id="message"></div>
+    <button class="switch-btn" onclick="switchSection()">⬅ Back</button>
+  </div>
+
+  <!-- JavaScript -->
+  <script>
+    let currentSection = 1;
+
+    function switchSection() {
+      document.getElementById('section1').classList.toggle('active');
+      document.getElementById('section2').classList.toggle('active');
+      currentSection = currentSection === 1 ? 2 : 1;
+    }
+
+    function showLove() {
+      document.getElementById("message").innerHTML = "Aww 🥰 I love you too Palak! 💕💍<br>From your Aditya 💖";
+    }
+
+    function moveButton() {
+      const btn = document.getElementById("noBtn");
+      const container = document.querySelector('.btn-container');
+      const maxX = container.offsetWidth - btn.offsetWidth;
+      const maxY = container.offsetHeight - btn.offsetHeight;
+      const randX = Math.floor(Math.random() * maxX);
+      const randY = Math.floor(Math.random() * maxY);
+      btn.style.left = randX + "px";
+      btn.style.top = randY + "px";
+    }
+  </script>
 
 </body>
 </html>
