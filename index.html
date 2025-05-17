@@ -2,96 +2,56 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>For My Love, Palak 💕</title>
+  <title>For My Love, Palak 💖</title>
   <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Montserrat:wght@300&display=swap" rel="stylesheet">
   <style>
     * {
-      margin: 0;
-      padding: 0;
       box-sizing: border-box;
     }
 
     body {
+      background: radial-gradient(ellipse at bottom, #ffebf0 0%, #ffc1cc 100%);
       font-family: 'Montserrat', sans-serif;
-      overflow: hidden;
-    }
-
-    /* Common Section Styling */
-    .section {
-      display: none;
-      height: 100vh;
-      width: 100%;
-      position: absolute;
-      top: 0;
-      left: 0;
+      margin: 0;
+      padding: 0;
+      color: #4a148c;
+      overflow-x: hidden;
       text-align: center;
     }
 
-    .active {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Section 1 - Love Note */
-    #section1 {
-      background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
-      color: #fff;
-      padding: 20px;
-    }
-
-    .love-note {
-      background: rgba(255, 255, 255, 0.1);
-      padding: 30px;
-      border-radius: 20px;
-      box-shadow: 0 0 20px rgba(255, 192, 203, 0.6);
-      animation: fadeInUp 2s ease-in-out;
-      max-width: 600px;
-    }
-
-    h1 {
+    h1, h2 {
       font-family: 'Great Vibes', cursive;
       font-size: 3em;
-      color: #ff99cc;
-      margin-bottom: 10px;
+      margin: 20px 0;
+      color: #e91e63;
     }
 
-    p {
+    .love-note, .game, .quiz {
+      padding: 30px;
+      margin: 20px auto;
+      max-width: 700px;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.7);
+      box-shadow: 0 0 15px rgba(255, 105, 180, 0.5);
+    }
+
+    .btn-main {
+      margin: 20px;
+      padding: 15px 30px;
       font-size: 1.2em;
-      line-height: 1.6;
-      color: #ffe6f0;
-      margin: 15px 0;
+      border: none;
+      border-radius: 30px;
+      cursor: pointer;
+      background-color: #ff69b4;
+      color: white;
+      transition: 0.3s;
     }
 
-    .heart {
-      font-size: 3em;
-      color: #ff3366;
-      animation: beat 1s infinite;
+    .btn-main:hover {
+      background-color: #f50057;
     }
 
-    footer {
-      margin-top: 20px;
-      font-size: 0.9em;
-      color: #aaa;
-    }
-
-    @keyframes beat {
-      0%, 100% { transform: scale(1); }
-      50% { transform: scale(1.3); }
-    }
-
-    @keyframes fadeInUp {
-      0% {
-        opacity: 0;
-        transform: translateY(30px);
-      }
-      100% {
-        opacity: 1;
-        transform: translateY(0);
-      }
-    }
-
+    /* Heart animation */
     .hearts {
       position: fixed;
       top: 0;
@@ -100,56 +60,46 @@
       height: 100%;
       pointer-events: none;
       overflow: hidden;
+      z-index: -1;
     }
 
     .hearts span {
       position: absolute;
       color: pink;
-      font-size: 20px;
+      font-size: 24px;
       animation: float 10s linear infinite;
     }
 
     @keyframes float {
-      0% {
-        transform: translateY(100vh) scale(1);
-        opacity: 0;
-      }
-      50% {
-        opacity: 1;
-      }
-      100% {
-        transform: translateY(-10vh) scale(0.5);
-        opacity: 0;
-      }
+      0% { transform: translateY(100vh) scale(1); opacity: 0; }
+      50% { opacity: 1; }
+      100% { transform: translateY(-10vh) scale(0.5); opacity: 0; }
     }
 
-    /* Section 2 - Do You Love Me */
-    #section2 {
-      background: #fce4ec;
-      color: #4a148c;
-      flex-direction: column;
-    }
-
+    /* Game */
     .doll {
       width: 200px;
-      animation: float 3s ease-in-out infinite;
-      margin-top: 20px;
+      animation: floatUp 3s ease-in-out infinite;
+      margin-top: 10px;
+    }
+
+    @keyframes floatUp {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-20px); }
     }
 
     .btn-container {
-      margin-top: 30px;
+      margin-top: 20px;
       position: relative;
       height: 150px;
     }
 
-    .btn {
-      padding: 15px 30px;
-      font-size: 1.2em;
+    .yes, .no {
+      padding: 12px 25px;
+      font-size: 1.1em;
       border: none;
       border-radius: 25px;
       cursor: pointer;
-      margin: 20px;
-      transition: all 0.3s ease;
     }
 
     .yes {
@@ -163,22 +113,30 @@
       position: absolute;
     }
 
-    #message {
-      font-size: 1.4em;
-      margin-top: 30px;
+    /* Quiz */
+    .quiz ul {
+      list-style: none;
+      padding: 0;
     }
 
-    /* Navigation Button */
-    .switch-btn {
-      margin-top: 30px;
+    .quiz li button {
+      margin: 10px;
       padding: 10px 20px;
-      font-size: 1em;
-      background-color: #ff99cc;
-      border: none;
-      border-radius: 20px;
-      color: white;
+      border: 2px solid #ff4081;
+      border-radius: 15px;
+      background-color: white;
+      color: #ff4081;
       cursor: pointer;
-      box-shadow: 0 0 10px rgba(255, 153, 204, 0.5);
+      font-size: 1em;
+    }
+
+    .quiz li button:hover {
+      background-color: #ff4081;
+      color: white;
+    }
+
+    audio {
+      display: none;
     }
   </style>
 </head>
@@ -186,57 +144,61 @@
 
   <!-- Floating Hearts -->
   <div class="hearts">
-    <span style="left: 10%;">💗</span>
-    <span style="left: 25%; animation-delay: 2s;">💖</span>
-    <span style="left: 40%; animation-delay: 4s;">💘</span>
-    <span style="left: 60%; animation-delay: 1s;">❤️</span>
-    <span style="left: 75%; animation-delay: 3s;">💕</span>
-    <span style="left: 90%; animation-delay: 5s;">💓</span>
+    <span style="left:10%;">💗</span>
+    <span style="left:25%; animation-delay: 2s;">💖</span>
+    <span style="left:40%; animation-delay: 4s;">💘</span>
+    <span style="left:60%; animation-delay: 1s;">❤️</span>
+    <span style="left:75%; animation-delay: 3s;">💕</span>
+    <span style="left:90%; animation-delay: 5s;">💓</span>
   </div>
 
   <!-- Background Music -->
   <audio autoplay loop>
-    <source src="https://www.computerhope.com/jargon/m/example.mp3" type="audio/mp3">
-    Your browser does not support the audio element.
+    <source src="https://www.bensound.com/bensound-music/bensound-romantic.mp3" type="audio/mp3">
   </audio>
 
-  <!-- Section 1: Love Note -->
-  <div class="section active" id="section1">
-    <div class="love-note">
-      <h1>For My Love, Palak 💕</h1>
-      <p>Hey Palak, this page was made with pure love,</p>
-      <p>Because you’re the most beautiful part of my world. 🌎</p>
-      <div class="heart">❤️</div>
-      <p>I, <strong>Aditya Rathor</strong>, love you more with every heartbeat.</p>
-      <p>You’re not just my girlfriend… You’re my peace, my smile, my forever. 💍</p>
-      <footer>Made just for you, My Moonlight 🌙 - Love, Aditya</footer>
-    </div>
-    <button class="switch-btn" onclick="switchSection()">Next ➤</button>
+  <!-- Love Message -->
+  <div class="love-note">
+    <h1>For My Love, Palak 💕</h1>
+    <p>You are the reason behind my smile and the peace in my heart. ❤️</p>
+    <p>Every moment with you is a treasure, and I’m lucky to call you mine. 💍</p>
+    <p>- Yours forever, Aditya 💖</p>
+
+    <button class="btn-main" onclick="toggleSection('game')">💘 Open Cute Love Game</button>
+    <button class="btn-main" onclick="toggleSection('quiz')">🎯 Play Love Quiz</button>
   </div>
 
-  <!-- Section 2: Do You Love Me -->
-  <div class="section" id="section2">
-    <h1>Palak, Do You Love Me? 💖</h1>
-    <img class="doll" src="https://i.imgur.com/OC5gxWv.png" alt="Cute Doll">
-    <h1>Do You love Aditya ❤️</h1>
+  <!-- GAME Section -->
+  <div class="game" id="game" style="display:none;">
+    <h2>Do You Love Me? 😍</h2>
+    <img class="doll" src="https://i.imgur.com/Wrquqvz.png" alt="Cute Doll">
+    <h2>Do you love Aditya ❤️</h2>
 
     <div class="btn-container">
-      <button class="btn yes" onclick="showLove()">Yes 💘</button>
-      <button class="btn no" id="noBtn" onmouseover="moveButton()">No 🙈</button>
+      <button class="yes" onclick="showLove()">Yes 💘</button>
+      <button class="no" id="noBtn" onmouseover="moveButton()">No 🙈</button>
     </div>
-
-    <div id="message"></div>
-    <button class="switch-btn" onclick="switchSection()">⬅ Back</button>
+    <p id="message"></p>
   </div>
 
-  <!-- JavaScript -->
-  <script>
-    let currentSection = 1;
+  <!-- QUIZ Section -->
+  <div class="quiz" id="quiz" style="display:none;">
+    <h2>Love Quiz 💞</h2>
+    <p><strong>Q1:</strong> When did you break the Hukkah pot? 😂</p>
+    <ul>
+      <li><button onclick="checkAnswer(this, false)">14 February</button></li>
+      <li><button onclick="checkAnswer(this, false)">1 April</button></li>
+      <li><button onclick="checkAnswer(this, true)">10 March</button></li>
+      <li><button onclick="checkAnswer(this, false)">25 January</button></li>
+    </ul>
+    <p id="feedback"></p>
+  </div>
 
-    function switchSection() {
-      document.getElementById('section1').classList.toggle('active');
-      document.getElementById('section2').classList.toggle('active');
-      currentSection = currentSection === 1 ? 2 : 1;
+  <script>
+    function toggleSection(id) {
+      document.getElementById('game').style.display = 'none';
+      document.getElementById('quiz').style.display = 'none';
+      document.getElementById(id).style.display = 'block';
     }
 
     function showLove() {
@@ -252,6 +214,17 @@
       const randY = Math.floor(Math.random() * maxY);
       btn.style.left = randX + "px";
       btn.style.top = randY + "px";
+    }
+
+    function checkAnswer(btn, isCorrect) {
+      const feedback = document.getElementById("feedback");
+      if (isCorrect) {
+        feedback.innerHTML = "🎉 Correct, baby! You remember everything! 😘";
+        feedback.style.color = "green";
+      } else {
+        feedback.innerHTML = "😢 Oops! Try again, love!";
+        feedback.style.color = "red";
+      }
     }
   </script>
 
