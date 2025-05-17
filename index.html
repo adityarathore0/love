@@ -230,3 +230,80 @@
 
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Compliment Generator 💌</title>
+  <style>
+    body {
+      background: #ffe6f0;
+      font-family: 'Arial', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+      text-align: center;
+      color: #c71585;
+    }
+
+    button {
+      background-color: #ff69b4;
+      border: none;
+      padding: 15px 30px;
+      border-radius: 25px;
+      color: white;
+      font-size: 1.2em;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(255,105,180,0.6);
+      transition: background-color 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d6336c;
+    }
+
+    #complimentText {
+      margin-top: 30px;
+      font-size: 1.3em;
+      min-height: 60px;
+      font-weight: bold;
+      transition: opacity 0.5s ease;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Real Compliment Generator 💌</h2>
+  <button onclick="showCompliment()">Click for a Compliment!</button>
+  <p id="complimentText" aria-live="polite" aria-atomic="true"></p>
+
+  <script>
+    const compliments = [
+      "You're cuter than puppies and sweeter than chocolate.",
+      "Every second without you feels like a glitch in my heart.",
+      "If I could have anyone in the world, it would still be you.",
+      "Your smile is my favorite sunrise.",
+      "You are the reason I believe in love again.",
+      "Palak, you’re not just my love, you’re my universe.",
+      "Being with you feels like home.",
+      "Even stars look dull compared to your sparkle.",
+      "You're my today and all of my tomorrows.",
+      "The world became better the moment you walked into mine."
+    ];
+
+    function showCompliment() {
+      const index = Math.floor(Math.random() * compliments.length);
+      const complimentText = document.getElementById("complimentText");
+      complimentText.style.opacity = 0;
+      setTimeout(() => {
+        complimentText.textContent = compliments[index];
+        complimentText.style.opacity = 1;
+      }, 300);
+    }
+  </script>
+
+</body>
+</html>
